@@ -50,6 +50,7 @@ sudo apt-get install -t python3-pip
 sudo apt-get install -y Sublist3r
 sudo apt-get install -y nmap
 sudo apt-get install -y nc
+sudo apt-get install -y tmux
 
 # Create tools directory
 mkdir ~/tools
