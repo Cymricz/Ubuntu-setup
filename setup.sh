@@ -4,12 +4,13 @@ sudo apt-get -y update
 sudo apt-get -y upgrade
 
 # Pulling down bashrc & bash_aliases
-echo "Pulling bashrc and bash_aliases from Github..."
+echo "Pulling profile, bashrc, and bash_aliases from Github..."
 git clone https://github.com/Cymricz/bash_profile.git
 cd bash_profile
-cat .bashrc >> ~/.bashrc
-cat .bash_aliases >> ~/.bash_aliases
-source ~/.bashrc
+cat .bashrc > ~/.bashrc
+cat .bash_aliases > ~/.bash_aliases
+cat .profile > ~/.profile
+source ~/.profile
 cd ~/tools/
 echo "Done."
 
