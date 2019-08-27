@@ -3,6 +3,10 @@
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
+# Create tools directory
+mkdir ~/tools
+cd ~/tools/
+
 # Pulling down bashrc & bash_aliases
 echo "Pulling profile, bashrc, and bash_aliases from Github..."
 git clone https://github.com/Cymricz/bash_profile.git
@@ -47,19 +51,20 @@ fi
 
 # Package-managed tools
 sudo apt-get install -y python3
-sudo apt-get install -t python3-pip
-sudo apt-get install -y Sublist3r
+sudo apt-get install -y python3-pip
 sudo apt-get install -y nmap
-sudo apt-get install -y nc
+sudo apt-get install -y netcat-traditional
 sudo apt-get install -y tmux
-
-# Create tools directory
-mkdir ~/tools
-cd ~/tools/
+sudo apt-get install -y metasploit-framework 
 
 # Git tools
 echo "Installing dirsearch..."
 git clone https://github.com/maurosoria/dirsearch.git
+cd ~/tools/
+echo "Done."
+
+echo "Installing Sublist3r..."
+git clone https://github.com/aboul3la/Sublist3r.git
 cd ~/tools/
 echo "Done."
 
@@ -74,8 +79,13 @@ echo "Done."
 echo "Pulling down Seclists..."
 cd ~/tools/
 git clone https://github.com/danielmiessler/SecLists.git
-cd ~/tools/SecLists/Discovery/DCS/
+cd ~/tools/SecLists/Discovery/DNS/
 ## This file breaks MassDNS (which I don't use currently :p) and needs to be cleaned.
 cat dns-Jhaddix.txt | head -n -14 > clean-jhaddix-dns.txt
 cd ~/tools/
 echo "Done."
+
+# Set tmux terminal colors
+cd ~
+echo "set -g default-terminal 'screen-256color'" >> .tmux.conf
+echo "============\nSetup Complete.\n============"
