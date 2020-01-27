@@ -1,22 +1,20 @@
 #!/bin/bash
 
-sudo apt-get -y update
-sudo apt-get -y upgrade
-
-# Create tools directory
-mkdir ~/tools
-cd ~/tools/
+#sudo apt-get -y update
+#sudo apt-get -y upgrade
 
 # Pulling down bashrc & bash_aliases
+cd ~
 echo "Pulling profile, bashrc, and bash_aliases from Github..."
 git clone https://github.com/Cymricz/bash_profile.git
 cd bash_profile
 cat .bashrc > ~/.bashrc
 cat .bash_aliases > ~/.bash_aliases
 cat .profile > ~/.profile
-source ~/.profile
-cd ~/tools/
 echo "Done."
+
+# Everything gets to live in /opt/
+cd /opt/
 
 # Install Go
 if [[ -z "$GOPATH" ]];then
@@ -60,12 +58,12 @@ sudo apt-get install -y metasploit-framework
 # Git tools
 echo "Installing dirsearch..."
 git clone https://github.com/maurosoria/dirsearch.git
-cd ~/tools/
+cd /opt/
 echo "Done."
 
 echo "Installing Sublist3r..."
 git clone https://github.com/aboul3la/Sublist3r.git
-cd ~/tools/
+cd /opt/
 echo "Done."
 
 echo "Installing Amass..."
@@ -77,12 +75,12 @@ go get -u github.com/tomnomnom/httprobe
 echo "Done."
 
 echo "Pulling down Seclists..."
-cd ~/tools/
+cd /opt/
 git clone https://github.com/danielmiessler/SecLists.git
-cd ~/tools/SecLists/Discovery/DNS/
+cd /opt/SecLists/Discovery/DNS/
 ## This file breaks MassDNS (which I don't use currently :p) and needs to be cleaned.
 cat dns-Jhaddix.txt | head -n -14 > clean-jhaddix-dns.txt
-cd ~/tools/
+cd /opt/
 echo "Done."
 
 # Set tmux terminal colors
